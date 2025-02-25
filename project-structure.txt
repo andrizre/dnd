@@ -1,0 +1,22 @@
+dungeons-rpg/
+├── assets/
+│   ├── css/
+│   │   └── styles.css
+│   ├── js/
+│   │   └── game.js
+│   └── images/
+├── config/
+│   └── database.php
+├── includes/
+│   ├── auth.php
+│   ├── character.php
+│   ├── quest.php
+│   └── battle.php
+├── layouts/
+│   ├── header.php
+│   └── footer.php
+├── index.php
+├── login.php
+├── register.php
+├── game.php
+└── database.sql
