@@ -1,0 +1,47 @@
+/* Custom styles on top of Tailwind CSS */
+.quest-card {
+    transition: transform 0.2s;
+}
+
+.quest-card:hover {
+    transform: translateY(-2px);
+}
+
+.character-stat {
+    animation: stat-pulse 2s infinite;
+}
+
+@keyframes stat-pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.8; }
+    100% { opacity: 1; }
+}
+
+/* Custom scrollbar for game area */
+#game-area::-webkit-scrollbar {
+    width: 8px;
+}
+
+#game-area::-webkit-scrollbar-track {
+    background: #374151;
+}
+
+#game-area::-webkit-scrollbar-thumb {
+    background: #4B5563;
+    border-radius: 4px;
+}
+
+#game-area::-webkit-scrollbar-thumb:hover {
+    background: #6B7280;
+}
+
+/* Battle animations */
+.battle-animation {
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
