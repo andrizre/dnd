@@ -1,10 +1,6 @@
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-;
-;
-;
-;
+CREATE DATABASE dungeon_rpg;
+USE dungeon_rpg;
+
 CREATE TABLE `characters` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
@@ -18,23 +14,27 @@ CREATE TABLE `characters` (
   `gold` int(11) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 CREATE TABLE `character_inventory` (
   `id` int(11) NOT NULL,
   `character_id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
   `quantity` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 CREATE TABLE `character_quests` (
   `character_id` int(11) NOT NULL,
   `quest_id` int(11) NOT NULL,
   `status` enum('not_started','in_progress','completed') DEFAULT 'not_started',
   `progress` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`progress`))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 CREATE TABLE `character_skills` (
   `character_id` int(11) NOT NULL,
   `skill_id` int(11) NOT NULL,
   `level` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 CREATE TABLE `dungeons` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
@@ -43,6 +43,7 @@ CREATE TABLE `dungeons` (
   `difficulty` enum('easy','medium','hard','extreme') DEFAULT 'easy',
   `rewards` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`rewards`))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 CREATE TABLE `items` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
@@ -51,6 +52,7 @@ CREATE TABLE `items` (
   `stats` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`stats`)),
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 CREATE TABLE `npcs` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
@@ -58,6 +60,7 @@ CREATE TABLE `npcs` (
   `type` enum('merchant','quest_giver','trainer') NOT NULL,
   `interaction_data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`interaction_data`))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 CREATE TABLE `quests` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
@@ -67,6 +70,7 @@ CREATE TABLE `quests` (
   `reward_gold` int(11) DEFAULT NULL,
   `reward_items` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`reward_items`))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 CREATE TABLE `skills` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
@@ -75,6 +79,7 @@ CREATE TABLE `skills` (
   `mana_cost` int(11) DEFAULT NULL,
   `level_required` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
@@ -83,6 +88,7 @@ CREATE TABLE `users` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `user_code` varchar(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 ALTER TABLE `characters`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
