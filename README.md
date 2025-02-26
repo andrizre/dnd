@@ -51,6 +51,8 @@ dungeon-rpg/
 ├── config/
 ├── includes/
 ├── layouts/
+├── database/
+│   ├── dungeon_rpg.sql
 └── README.md
 ```
 
