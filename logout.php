@@ -1,10 +1,11 @@
 <?php
-require_once 'config/database.php';
-require_once 'includes/auth.php';
-
 session_start();
-$auth = new Auth(null);
+require_once 'includes/auth.php';
+require_once 'config/database.php';
+
+$database = new Database();
+$db = $database->getConnection();
+$auth = new Auth($db);
+
 $auth->logout();
-header('Location: index.php');
-exit;
 ?>
